@@ -1,2 +1,2 @@
-# Binary-Buzz-
+# Binary-Buzz
 Messaging App
