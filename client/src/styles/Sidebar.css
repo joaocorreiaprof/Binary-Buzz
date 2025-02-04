@@ -1,0 +1,24 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  background-color: #222;
+  color: white;
+  padding: 10px;
+  font-size: 1.2rem;
+}
+
+.sidebar-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+}
+
+.sidebar-option:hover {
+  color: #ffcc00;
+}

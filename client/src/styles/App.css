@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100vw;
+  font-family: "Nunito", "Inter", sans-serif;
+}
+
+.content-sidebar {
+  width: 10%;
+}
+
+.content-area {
+  display: flex;
+  width: 90%;
+}
