@@ -1,5 +1,7 @@
-//Imported components
+//Packages
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { useState, useEffect } from "react";
+//Components
 import Sidebar from "./components/Sidebar";
 import GlobalChat from "./components/GlobalChat";
 import GlobalChatDisplay from "./components/GlobalChatDisplay";
@@ -9,7 +11,8 @@ import Groups from "./components/Groups";
 import GroupsDisplay from "./components/GroupsDisplay";
 import ManageProfile from "./components/ManageProfile";
 import ManageProfileDisplay from "./components/ManageProfileDisplay";
-import Logout from "./components/Logout";
+import SignUp from "./components/SignUp";
+import LogIn from "./components/LogIn";
 
 //Style & fonts
 import "./styles/App.css";
@@ -17,11 +20,26 @@ import "@fontsource/inter";
 import "@fontsource/nunito";
 
 function App() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      try {
+        const decodedUser = JSON.parse(atob(token.split(".")[1]));
+        setUser(decodedUser);
+      } catch (error) {
+        console.error("Invalid token:", error);
+        localStorage.removeItem("token");
+      }
+    }
+  }, []);
+
   return (
     <Router>
       <div className="main-content">
         <div className="content-sidebar">
-          <Sidebar />
+          <Sidebar user={user} setUser={setUser} />
         </div>
         <div className="content-area">
           <Routes>
@@ -29,8 +47,8 @@ function App() {
               path="/"
               element={
                 <>
-                  <GlobalChat />
-                  <GlobalChatDisplay />
+                  <GlobalChat user={user} />
+                  <GlobalChatDisplay user={user} />
                 </>
               }
             />
@@ -38,8 +56,8 @@ function App() {
               path="/chats"
               element={
                 <>
-                  <Chats />
-                  <ChatsDisplay />
+                  <Chats user={user} />
+                  <ChatsDisplay user={user} />
                 </>
               }
             />
@@ -47,8 +65,8 @@ function App() {
               path="/groups"
               element={
                 <>
-                  <Groups />
-                  <GroupsDisplay />
+                  <Groups user={user} />
+                  <GroupsDisplay user={user} />
                 </>
               }
             />
@@ -56,16 +74,24 @@ function App() {
               path="/profile"
               element={
                 <>
-                  <ManageProfile />
-                  <ManageProfileDisplay />
+                  <ManageProfile user={user} />
+                  <ManageProfileDisplay user={user} />
                 </>
               }
             />
             <Route
-              path="/logout"
+              path="/sign-up"
               element={
                 <>
-                  <Logout />
+                  <SignUp />
+                </>
+              }
+            />
+            <Route
+              path="/log-in"
+              element={
+                <>
+                  <LogIn setUser={setUser} />
                 </>
               }
             />
