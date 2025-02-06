@@ -57,6 +57,7 @@ model ConversationUser {
 model Group {
   id        String   @id @default(uuid())
   name      String   @unique
+  isGlobal  Boolean  @default(false)
   createdAt DateTime @default(now())
 
   users    UserGroup[] 

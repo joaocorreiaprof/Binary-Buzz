@@ -1,4 +1,5 @@
 .global-chat-display {
   width: 80%;
-  background-color: aqua;
+  background-color: #121212;
+  color: white;
 }

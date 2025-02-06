@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+
+//Style
 import "../styles/SignUp.css";
 
 const SignUp = () => {
@@ -40,9 +42,7 @@ const SignUp = () => {
       });
 
       if (response.ok) {
-        const data = await response.json();
         alert("User created successfully!");
-        console.log(data);
         navigate("/log-in");
       } else {
         const message = await response.text();
@@ -119,6 +119,9 @@ const SignUp = () => {
           Sign Up
         </button>
       </form>
+      <p className="login-text">
+        Already have an account? <Link to="/log-in">Log in</Link>
+      </p>
     </div>
   );
 };

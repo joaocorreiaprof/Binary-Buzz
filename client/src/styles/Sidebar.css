@@ -3,7 +3,8 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100vh;
-  background-color: #222;
+  width: 10%;
+  background-color: #121212;
   color: white;
   padding: 10px;
   font-size: 1.2rem;
@@ -17,6 +18,10 @@
   text-decoration: none;
   color: white;
   padding: 10px;
+  background: none;
+  border: none;
+  font-size: inherit;
+  font-family: inherit;
 }
 
 .sidebar-option:hover {

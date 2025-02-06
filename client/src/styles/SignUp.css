@@ -1,74 +1,85 @@
+/* Dark theme for the sign-up page */
 .signup-container {
+  background-color: #121212; /* Match login page */
+  color: #ffffff;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  height: 100vh;
   width: 100%;
-  background-color: #2c2f31;
-  font-family: "Arial", sans-serif;
+}
+
+.sign-up {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
 }
 
 .signup-form {
-  background-color: #ffffff;
-  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  background-color: #1e1e1e;
+  padding: 2rem;
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
   width: 100%;
-  max-width: 400px;
-}
-
-h1.sign-up {
-  text-align: center;
-  color: white;
-  font-size: 2.5rem;
-  margin-bottom: 20px;
+  max-width: 350px;
 }
 
 .input-group {
-  margin-bottom: 15px;
+  margin-bottom: 1rem;
 }
 
 .label {
   font-size: 1rem;
-  color: #555;
-  margin-bottom: 8px;
+  color: #bbb;
+  margin-bottom: 5px;
   display: block;
 }
 
 .input {
   width: 100%;
-  padding: 10px;
-  font-size: 14px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  outline: none;
-  box-sizing: border-box;
-  transition: border 0.3s ease;
+  padding: 12px;
+  border: 1px solid #333;
+  border-radius: 5px;
+  background-color: #222;
+  color: #fff;
+  font-size: 1rem;
 }
 
-.input:focus {
-  border-color: #4a90e2;
+.input::placeholder {
+  color: #888;
 }
 
 .button {
-  width: 100%;
+  background-color: #bb86fc;
+  color: black;
   padding: 12px;
-  background-color: #4a90e2;
-  color: white;
   border: none;
-  border-radius: 8px;
-  font-size: 16px;
+  border-radius: 5px;
+  font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .button:hover {
-  background-color: #357ab7;
+  background-color: #9a67ea;
 }
 
-.error {
-  color: #ff5e57;
-  text-align: center;
-  margin-top: 10px;
-  font-size: 14px;
+/* Log in link */
+.login-text {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #bbb;
+}
+
+.login-text a {
+  color: #bb86fc;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.login-text a:hover {
+  text-decoration: underline;
 }

@@ -19,11 +19,7 @@ body,
   font-family: "Nunito", "Inter", sans-serif;
 }
 
-.content-sidebar {
-  width: 10%;
-}
-
 .content-area {
   display: flex;
-  width: 90%;
+  width: 100%;
 }

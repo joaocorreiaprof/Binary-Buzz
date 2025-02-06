@@ -16,6 +16,7 @@ const SideBar = ({ user, setUser }) => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     setUser(null);
+    window.location.href = "/log-in";
   };
   return (
     <div className="sidebar">
@@ -47,7 +48,7 @@ const SideBar = ({ user, setUser }) => {
           </>
         ) : (
           <>
-            <p>@{user.username || "User"}</p>
+            <p className="sidebar-option">@{user.username || "User"}</p>
             <Link to="/profile" className="sidebar-option">
               <CgProfile />
               <p>Profile</p>

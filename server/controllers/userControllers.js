@@ -14,6 +14,19 @@ module.exports = {
       const newUser = await prisma.user.create({
         data: { email, username, password: hashedPassword },
       });
+
+      const globalGroup = await prisma.group.findFirst({
+        where: { isGlobal: true },
+      });
+
+      if (globalGroup) {
+        await prisma.userGroup.create({
+          data: {
+            userId: newUser.id,
+            groupId: globalGroup.id,
+          },
+        });
+      }
       res.status(201).json(newUser);
     } catch (err) {
       console.error("Error creating user:", err);
@@ -58,6 +71,16 @@ module.exports = {
     } catch (err) {
       console.error("Error logging in:", err);
       res.status(500).send("An unexpected error occurred");
+    }
+  },
+
+  displayAllUsers: async (req, res) => {
+    try {
+      const users = await prisma.user.findMany();
+      res.status(200).json(users);
+    } catch (err) {
+      console.error("Error fetching posts:", err);
+      res.status(500).send("An unexpected error occured");
     }
   },
 };

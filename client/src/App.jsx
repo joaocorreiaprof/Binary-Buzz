@@ -1,6 +1,12 @@
 //Packages
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import { useState, useEffect } from "react";
+
 //Components
 import Sidebar from "./components/Sidebar";
 import GlobalChat from "./components/GlobalChat";
@@ -21,6 +27,7 @@ import "@fontsource/nunito";
 
 function App() {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -33,67 +40,81 @@ function App() {
         localStorage.removeItem("token");
       }
     }
+    setLoading(false);
   }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Router>
       <div className="main-content">
-        <div className="content-sidebar">
-          <Sidebar user={user} setUser={setUser} />
-        </div>
+        {user && <Sidebar user={user} setUser={setUser} />}
         <div className="content-area">
           <Routes>
+            {/* Public Routes */}
+            <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/log-in" element={<LogIn setUser={setUser} />} />
+
+            {/* Protected Routes */}
             <Route
               path="/"
               element={
-                <>
-                  <GlobalChat user={user} />
-                  <GlobalChatDisplay user={user} />
-                </>
+                user ? (
+                  <>
+                    <GlobalChat user={user} />
+                    <GlobalChatDisplay user={user} />
+                  </>
+                ) : (
+                  <Navigate to="/log-in" />
+                )
               }
             />
             <Route
               path="/chats"
               element={
-                <>
-                  <Chats user={user} />
-                  <ChatsDisplay user={user} />
-                </>
+                user ? (
+                  <>
+                    <Chats user={user} />
+                    <ChatsDisplay user={user} />
+                  </>
+                ) : (
+                  <Navigate to="/log-in" />
+                )
               }
             />
             <Route
               path="/groups"
               element={
-                <>
-                  <Groups user={user} />
-                  <GroupsDisplay user={user} />
-                </>
+                user ? (
+                  <>
+                    <Groups user={user} />
+                    <GroupsDisplay user={user} />
+                  </>
+                ) : (
+                  <Navigate to="/log-in" />
+                )
               }
             />
             <Route
               path="/profile"
               element={
-                <>
-                  <ManageProfile user={user} />
-                  <ManageProfileDisplay user={user} />
-                </>
+                user ? (
+                  <>
+                    <ManageProfile user={user} />
+                    <ManageProfileDisplay user={user} />
+                  </>
+                ) : (
+                  <Navigate to="/log-in" />
+                )
               }
             />
+
+            {/* Redirect unknown routes */}
             <Route
-              path="/sign-up"
-              element={
-                <>
-                  <SignUp />
-                </>
-              }
-            />
-            <Route
-              path="/log-in"
-              element={
-                <>
-                  <LogIn setUser={setUser} />
-                </>
-              }
+              path="*"
+              element={<Navigate to={user ? "/" : "/log-in"} />}
             />
           </Routes>
         </div>

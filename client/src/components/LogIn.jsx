@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import PropTypes from "prop-types";
+
+//Style
 import "../styles/LogIn.css";
 
 const LogIn = ({ setUser }) => {
@@ -23,7 +25,7 @@ const LogIn = ({ setUser }) => {
 
     if (response.ok) {
       localStorage.setItem("token", data.token);
-      setUser({ email: data.email });
+      setUser(data.user);
       navigate("/");
       window.location.reload();
     } else {
@@ -55,6 +57,12 @@ const LogIn = ({ setUser }) => {
           Log In
         </button>
       </form>
+      <p className="signup-text">
+        Don&apos;t have an account?{" "}
+        <Link to="/sign-up" className="signup-link">
+          Sign up
+        </Link>
+      </p>
     </div>
   );
 };
