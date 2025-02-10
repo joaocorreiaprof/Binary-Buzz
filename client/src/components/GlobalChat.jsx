@@ -1,11 +1,17 @@
+//Packages
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
+
+//Styles
 import "../styles/GlobalChat.css";
 import { FaUserAstronaut } from "react-icons/fa6";
 
-const GlobalChat = () => {
-  const [users, setUsers] = useState([]);
+const GlobalChat = ({ user }) => {
+  const [usersReceivers, setUsersReceivers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -15,7 +21,7 @@ const GlobalChat = () => {
           throw new Error("Failed to fetch users");
         }
         const data = await response.json();
-        setUsers(data);
+        setUsersReceivers(data);
       } catch (error) {
         console.error("Error fetching users", error);
       } finally {
@@ -26,9 +32,18 @@ const GlobalChat = () => {
     fetchUsers();
   }, []);
 
-  const filteredUsers = users.filter((user) =>
-    user.username.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredUsers = usersReceivers.filter((userReceiver) =>
+    userReceiver.username.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const handleUserClick = (userReceiver) => {
+    console.log("userid from GlobalChat:", user.id);
+    console.log("userReceiver from GlobalChat:", userReceiver);
+
+    navigate(`/chats/${user.id}/${userReceiver.id}`, {
+      state: { userReceiver }, // Pass the whole object here
+    });
+  };
 
   return (
     <div className="global-chat">
@@ -43,10 +58,14 @@ const GlobalChat = () => {
       {loading ? (
         <p className="loading">Loading...</p>
       ) : filteredUsers.length > 0 ? (
-        filteredUsers.map((user) => (
-          <div key={user.id} className="user-card">
+        filteredUsers.map((userReceiver) => (
+          <div
+            key={userReceiver.id}
+            className="user-card"
+            onClick={() => handleUserClick(userReceiver)}
+          >
             <FaUserAstronaut className="user-icon" />
-            <p>{user.username}</p>
+            <p>{userReceiver.username}</p>
           </div>
         ))
       ) : (
@@ -54,6 +73,13 @@ const GlobalChat = () => {
       )}
     </div>
   );
+};
+
+GlobalChat.propTypes = {
+  user: PropTypes.shape({
+    username: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default GlobalChat;

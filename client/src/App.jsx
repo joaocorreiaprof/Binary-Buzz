@@ -7,11 +7,10 @@ import {
 } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-//Components
+// Components
 import Sidebar from "./components/Sidebar";
 import GlobalChat from "./components/GlobalChat";
 import GlobalChatDisplay from "./components/GlobalChatDisplay";
-import Chats from "./components/Chats";
 import ChatsDisplay from "./components/ChatsDisplay";
 import Groups from "./components/Groups";
 import GroupsDisplay from "./components/GroupsDisplay";
@@ -20,7 +19,7 @@ import ManageProfileDisplay from "./components/ManageProfileDisplay";
 import SignUp from "./components/SignUp";
 import LogIn from "./components/LogIn";
 
-//Style & fonts
+// Styles
 import "./styles/App.css";
 import "@fontsource/inter";
 import "@fontsource/nunito";
@@ -53,11 +52,9 @@ function App() {
         {user && <Sidebar user={user} setUser={setUser} />}
         <div className="content-area">
           <Routes>
-            {/* Public Routes */}
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/log-in" element={<LogIn setUser={setUser} />} />
 
-            {/* Protected Routes */}
             <Route
               path="/"
               element={
@@ -72,11 +69,11 @@ function App() {
               }
             />
             <Route
-              path="/chats"
+              path="/chats/:userId/:receiverId"
               element={
                 user ? (
                   <>
-                    <Chats user={user} />
+                    <GlobalChat user={user} />
                     <ChatsDisplay user={user} />
                   </>
                 ) : (
@@ -110,8 +107,6 @@ function App() {
                 )
               }
             />
-
-            {/* Redirect unknown routes */}
             <Route
               path="*"
               element={<Navigate to={user ? "/" : "/log-in"} />}

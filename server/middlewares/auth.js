@@ -18,7 +18,6 @@ module.exports = (req, res, next) => {
     req.user = decoded;
     next();
   } catch (err) {
-    // Handle specific JWT errors
     if (err.name === "TokenExpiredError") {
       return res.status(401).json({ message: "Token expired" });
     } else if (err.name === "JsonWebTokenError") {
