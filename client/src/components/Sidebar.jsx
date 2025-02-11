@@ -25,7 +25,7 @@ const SideBar = ({ user, setUser }) => {
           <AiOutlineGlobal />
           <p>Global</p>
         </Link>
-        <Link to="/chats" className="sidebar-option">
+        <Link to="/chats/:userId/:receiverId" className="sidebar-option">
           <BsChatSquareTextFill />
           <p>Chats</p>
         </Link>

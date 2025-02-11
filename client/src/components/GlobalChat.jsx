@@ -37,11 +37,8 @@ const GlobalChat = ({ user }) => {
   );
 
   const handleUserClick = (userReceiver) => {
-    console.log("userid from GlobalChat:", user.id);
-    console.log("userReceiver from GlobalChat:", userReceiver);
-
     navigate(`/chats/${user.id}/${userReceiver.id}`, {
-      state: { userReceiver }, // Pass the whole object here
+      state: { userReceiver },
     });
   };
 
@@ -58,16 +55,18 @@ const GlobalChat = ({ user }) => {
       {loading ? (
         <p className="loading">Loading...</p>
       ) : filteredUsers.length > 0 ? (
-        filteredUsers.map((userReceiver) => (
-          <div
-            key={userReceiver.id}
-            className="user-card"
-            onClick={() => handleUserClick(userReceiver)}
-          >
-            <FaUserAstronaut className="user-icon" />
-            <p>{userReceiver.username}</p>
-          </div>
-        ))
+        filteredUsers
+          .filter((userReceiver) => userReceiver.id !== user.id)
+          .map((userReceiver) => (
+            <div
+              key={userReceiver.id}
+              className="user-card"
+              onClick={() => handleUserClick(userReceiver)}
+            >
+              <FaUserAstronaut className="user-icon" />
+              <p>{userReceiver.username}</p>
+            </div>
+          ))
       ) : (
         <p className="no-users">No users available</p>
       )}

@@ -15,6 +15,11 @@ const ChatsDisplay = ({ user }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!user.id || !userReceiver?.id) {
+      setLoading(false);
+      return;
+    }
+
     const fetchMessages = async () => {
       try {
         const token = localStorage.getItem("token");
@@ -38,6 +43,14 @@ const ChatsDisplay = ({ user }) => {
 
     fetchMessages();
   }, [user.id, receiverId, userReceiver]);
+
+  if (!user.id || !userReceiver?.id) {
+    return (
+      <div className="select-conversation">
+        Select a conversation to start :)
+      </div>
+    );
+  }
 
   const handleMessageChange = (event) => {
     setNewMessage(event.target.value);
@@ -77,14 +90,6 @@ const ChatsDisplay = ({ user }) => {
       console.error("Error sending message:", err);
     }
   };
-
-  if (loading) {
-    return <div>Loading messages...</div>;
-  }
-
-  if (error) {
-    return <div>{error}</div>;
-  }
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter" && !event.shiftKey) {
