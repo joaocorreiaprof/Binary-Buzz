@@ -2,7 +2,10 @@ import { useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
+
+//Styles
 import "../styles/ChatsDisplay.css";
+import { IoSend } from "react-icons/io5";
 
 const ChatsDisplay = ({ user }) => {
   const { receiverId } = useParams();
@@ -46,9 +49,7 @@ const ChatsDisplay = ({ user }) => {
 
   if (!user.id || !userReceiver?.id) {
     return (
-      <div className="select-conversation">
-        Select a conversation to start :)
-      </div>
+      <div className="select-conversation">Select a conversation to start</div>
     );
   }
 
@@ -107,9 +108,13 @@ const ChatsDisplay = ({ user }) => {
 
       <div className="messages-list">
         {messages.map((message, index) => (
-          <div key={index} className="message">
-            <strong>{message.sender?.username || "Unknown"}:</strong>{" "}
-            {message.content}{" "}
+          <div
+            key={index}
+            className={`message ${
+              message.senderId === user.id ? "self" : "other"
+            }`}
+          >
+            {message.content}
           </div>
         ))}
       </div>
@@ -122,7 +127,7 @@ const ChatsDisplay = ({ user }) => {
           placeholder="Type a message..."
         />
         <button className="send-button" onClick={handleSendMessage}>
-          Send
+          <IoSend />
         </button>
       </div>
     </div>

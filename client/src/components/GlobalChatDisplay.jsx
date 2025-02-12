@@ -4,6 +4,7 @@ import axios from "axios";
 
 // Style & icons
 import "../styles/GlobalChatDisplay.css";
+import { AiOutlineGlobal } from "react-icons/ai";
 import { IoSend } from "react-icons/io5";
 
 const GlobalChatDisplay = ({ user }) => {
@@ -86,6 +87,10 @@ const GlobalChatDisplay = ({ user }) => {
   return (
     <div className="global-chat-display">
       <div className="messages-container">
+        <div className="global-chat-title-img">
+          <AiOutlineGlobal className="global-img" />
+          <p className="global-chat-title">Global Chat</p>
+        </div>
         {messages.map((message) => (
           <div
             key={
@@ -100,7 +105,6 @@ const GlobalChatDisplay = ({ user }) => {
           >
             <strong>{message.sender.username}:</strong>
             <p>{message.content}</p>
-            <span>{new Date(message.createdAt).toLocaleTimeString()}</span>
           </div>
         ))}
       </div>
@@ -110,6 +114,7 @@ const GlobalChatDisplay = ({ user }) => {
           value={newMessage}
           onChange={handleMessageChange}
           onKeyPress={handleKeyPress}
+          placeholder="Type a message..."
         ></textarea>
         <button className="send-button" onClick={handleSendMessage}>
           <IoSend />

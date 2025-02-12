@@ -1,4 +1,71 @@
 .groups {
+  width: 15%;
+  padding: 1rem;
+}
+
+.create-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.create-group form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.create-group input {
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.create-group button {
+  padding: 0.2rem 0.5rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
   width: 20%;
-  background-color: #a38d8d;
+  max-width: 20%;
+  box-sizing: border-box;
+}
+
+.create-group button:hover {
+  background-color: #45a049;
+}
+
+.group-list {
+  margin-top: 1rem;
+}
+
+.group-list h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.group-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.group-list li {
+  padding: 0.5rem;
+  cursor: pointer;
+  background-color: #f4f4f4;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+}
+
+.group-list li:hover {
+  background-color: #ddd;
+}
+
+.group-list p {
+  color: #888;
 }

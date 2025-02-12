@@ -101,4 +101,58 @@ module.exports = {
         .json({ message: "An error occurred while retrieving groups" });
     }
   },
+
+  sendMessageToSpecificGroup: async (req, res) => {
+    const { senderId, content } = req.body;
+    const { groupId } = req.params;
+
+    if (!senderId || !groupId || !content) {
+      return res
+        .status(400)
+        .json({ message: "SenderId, groupId, and content are required" });
+    }
+
+    try {
+      const findGroup = await prisma.group.findUnique({
+        where: { id: groupId },
+      });
+
+      if (!findGroup) {
+        return res.status(404).json({ message: "Group not found" });
+      }
+
+      const newMessage = await prisma.message.create({
+        data: {
+          senderId: senderId,
+          content: content,
+          groupId: groupId,
+        },
+      });
+
+      return res.status(201).json(newMessage);
+    } catch (err) {
+      console.error("Error sending message:", err);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+  },
+
+  displayAllGroupSpecificMessages: async (req, res) => {
+    const { groupId } = req.params;
+    if (!groupId) {
+      console.log("Missing groupId!");
+      return res.status(400).json({ message: "Group ID is required" });
+    }
+
+    try {
+      const messages = await prisma.message.findMany({
+        where: { groupId: groupId },
+        orderBy: { createdAt: "asc" },
+        include: { sender: true },
+      });
+      return res.status(200).json(messages);
+    } catch (err) {
+      console.error("Error fetching messages:", err);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+  },
 };

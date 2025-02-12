@@ -67,10 +67,12 @@ const Groups = ({ user }) => {
     navigate("/groups", {
       state: { selectedGroup: groupId, groupName: groupName, user: user },
     });
+    window.location.reload();
   };
 
   return (
     <div className="groups">
+      <h2>All Groups</h2>
       <div className="create-group">
         {!isCreatingGroup ? (
           <button onClick={() => setIsCreatingGroup(true)}>+</button>
@@ -91,7 +93,6 @@ const Groups = ({ user }) => {
       </div>
 
       <div className="group-list">
-        <h2>All Groups</h2>
         {groups.length > 0 ? (
           <ul>
             {groups.map((group) => (

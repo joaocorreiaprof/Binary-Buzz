@@ -5,14 +5,15 @@
   padding: 10px;
   width: 15%;
   overflow-y: auto;
-  background-color: #2f0e17e0;
+  background-color: #cdcdcd;
   color: #e0e0e0;
 }
 
 .bbFreaks {
-  color: #f1f1f1;
-  font-size: 1.3rem;
+  color: black;
+  font-size: 1.4rem;
   font-weight: bold;
+  letter-spacing: 2px;
 }
 
 .search-bar {
@@ -25,6 +26,7 @@
   border-radius: 15px;
   font-size: 14px;
   color: #e0e0e0;
+  height: 40px;
 }
 
 .search-bar::placeholder {
@@ -40,21 +42,25 @@
 .user-card {
   padding: 10px;
   margin: 5px;
-  width: 80%;
+  width: 85%;
   max-width: 300px;
   text-align: center;
   border-radius: 5px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-  color: #e0e0e0;
+  color: black;
+  font-size: 1rem;
   display: flex;
   align-items: center;
   gap: 8px;
   justify-content: flex-start;
   cursor: pointer;
+  background-color: white;
+  letter-spacing: 1px;
+  font-weight: 600;
 }
 
 .user-card:hover {
-  color: #ffcc00;
+  background-color: #ddd;
 }
 
 .user-icon {
