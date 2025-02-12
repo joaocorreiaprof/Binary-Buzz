@@ -30,7 +30,7 @@ function App() {
     if (token) {
       try {
         const decodedUser = JSON.parse(atob(token.split(".")[1]));
-        const expirationTime = decodedUser.exp * 1000; // Expiration time in milliseconds
+        const expirationTime = decodedUser.exp * 1000;
         const currentTime = Date.now();
 
         // If the token has expired, log the user out
@@ -38,7 +38,7 @@ function App() {
           localStorage.removeItem("token");
           setUser(null);
         } else {
-          setUser(decodedUser); // Token is valid, so set the user
+          setUser(decodedUser);
         }
       } catch (error) {
         console.error("Invalid token:", error);
@@ -46,7 +46,7 @@ function App() {
         setUser(null);
       }
     } else {
-      setUser(null); // No token, so set user to null
+      setUser(null);
     }
     setLoading(false);
   }, []);
