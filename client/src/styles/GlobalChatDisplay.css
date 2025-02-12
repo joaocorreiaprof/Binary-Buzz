@@ -127,3 +127,10 @@
   color: white;
   font-size: 1.7rem;
 }
+
+/*Mobile View*/
+@media (max-width: 480px) {
+  .global-chat-display {
+    width: 100%;
+  }
+}

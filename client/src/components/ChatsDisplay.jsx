@@ -1,3 +1,4 @@
+//Packages
 import { useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 import PropTypes from "prop-types";
@@ -75,12 +76,10 @@ const ChatsDisplay = ({ user }) => {
           },
         }
       );
-
-      // Add the new message to the state immediately after sending
       setMessages((prevMessages) => [
         ...prevMessages,
         {
-          senderId: user.id, // Ensure senderId is correct
+          senderId: user.id,
           sender: { username: user.username },
           content: newMessage,
           createdAt: new Date(),
