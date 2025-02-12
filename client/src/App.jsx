@@ -1,11 +1,10 @@
-//Packages
+import { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
   Routes,
   Navigate,
 } from "react-router-dom";
-import { useState, useEffect } from "react";
 
 // Components
 import Sidebar from "./components/Sidebar";
@@ -31,11 +30,23 @@ function App() {
     if (token) {
       try {
         const decodedUser = JSON.parse(atob(token.split(".")[1]));
-        setUser(decodedUser);
+        const expirationTime = decodedUser.exp * 1000; // Expiration time in milliseconds
+        const currentTime = Date.now();
+
+        // If the token has expired, log the user out
+        if (expirationTime < currentTime) {
+          localStorage.removeItem("token");
+          setUser(null);
+        } else {
+          setUser(decodedUser); // Token is valid, so set the user
+        }
       } catch (error) {
         console.error("Invalid token:", error);
         localStorage.removeItem("token");
+        setUser(null);
       }
+    } else {
+      setUser(null); // No token, so set user to null
     }
     setLoading(false);
   }, []);
