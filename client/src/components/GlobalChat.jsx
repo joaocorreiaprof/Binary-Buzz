@@ -42,6 +42,10 @@ const GlobalChat = ({ user }) => {
     });
   };
 
+  const sortedUsers = filteredUsers
+    .filter((userReceiver) => userReceiver.id !== user.id)
+    .sort((a, b) => a.username.localeCompare(b.username));
+
   return (
     <div className="global-chat">
       <p className="bbFreaks">B&B Freaks</p>
@@ -54,19 +58,17 @@ const GlobalChat = ({ user }) => {
       />
       {loading ? (
         <p className="loading">Loading...</p>
-      ) : filteredUsers.length > 0 ? (
-        filteredUsers
-          .filter((userReceiver) => userReceiver.id !== user.id)
-          .map((userReceiver) => (
-            <div
-              key={userReceiver.id}
-              className="user-card"
-              onClick={() => handleUserClick(userReceiver)}
-            >
-              <FaUserAstronaut className="user-icon" />
-              <p>{userReceiver.username}</p>
-            </div>
-          ))
+      ) : sortedUsers.length > 0 ? (
+        sortedUsers.map((userReceiver) => (
+          <div
+            key={userReceiver.id}
+            className="user-card"
+            onClick={() => handleUserClick(userReceiver)}
+          >
+            <FaUserAstronaut className="user-icon" />
+            <p>{userReceiver.username}</p>
+          </div>
+        ))
       ) : (
         <p className="no-users">No users available</p>
       )}

@@ -71,7 +71,7 @@ const GlobalChatDisplay = ({ user }) => {
   };
 
   if (loading) {
-    return <div>Loading messages...</div>;
+    return <div className="select-conversation">Loading messages...</div>;
   }
 
   if (error) {

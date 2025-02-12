@@ -71,33 +71,46 @@ const Groups = ({ user }) => {
   };
 
   return (
-    <div className="groups">
-      <h2>All Groups</h2>
-      <div className="create-group">
+    <div className="groups-container">
+      <h2 className="groups-title">All Groups</h2>
+      <div className="groups-create-section">
         {!isCreatingGroup ? (
-          <button onClick={() => setIsCreatingGroup(true)}>+</button>
+          <button
+            className="groups-create-btn"
+            onClick={() => setIsCreatingGroup(true)}
+          >
+            +
+          </button>
         ) : (
-          <form onSubmit={handleCreateGroup}>
+          <form className="groups-form" onSubmit={handleCreateGroup}>
             <input
               type="text"
               placeholder="Enter group name"
               value={newGroupName}
               onChange={(e) => setNewGroupName(e.target.value)}
+              className="groups-input"
             />
-            <button type="submit">Create Group</button>
-            <button type="button" onClick={() => setIsCreatingGroup(false)}>
+            <button type="submit" className="groups-submit-btn">
+              Create Group
+            </button>
+            <button
+              type="button"
+              className="groups-cancel-btn"
+              onClick={() => setIsCreatingGroup(false)}
+            >
               Cancel
             </button>
           </form>
         )}
       </div>
 
-      <div className="group-list">
+      <div className="groups-list">
         {groups.length > 0 ? (
-          <ul>
+          <ul className="groups-ul">
             {groups.map((group) => (
               <li
                 key={group.id}
+                className="groups-item"
                 onClick={() => handleGroupClick(group.id, group.name)}
               >
                 {group.name}
@@ -105,7 +118,7 @@ const Groups = ({ user }) => {
             ))}
           </ul>
         ) : (
-          <p>No groups found.</p>
+          <p className="groups-no-groups">No groups found.</p>
         )}
       </div>
     </div>

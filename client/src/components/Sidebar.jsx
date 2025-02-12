@@ -7,7 +7,6 @@ import "../styles/Sidebar.css";
 import { AiOutlineGlobal } from "react-icons/ai";
 import { BsChatSquareTextFill } from "react-icons/bs";
 import { MdGroups2 } from "react-icons/md";
-import { CgProfile } from "react-icons/cg";
 import { IoMdLogOut } from "react-icons/io";
 import { FaSignInAlt } from "react-icons/fa";
 import { GiArchiveRegister } from "react-icons/gi";
@@ -49,10 +48,6 @@ const SideBar = ({ user, setUser }) => {
         ) : (
           <>
             <p className="sidebar-option">@{user.username || "User"}</p>
-            <Link to="/profile" className="sidebar-option">
-              <CgProfile />
-              <p>Profile</p>
-            </Link>
             <button onClick={handleLogout} className="sidebar-option">
               <IoMdLogOut />
               <p>Log Out</p>

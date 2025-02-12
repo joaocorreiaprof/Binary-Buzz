@@ -60,7 +60,7 @@ module.exports = {
           role: user.role,
         },
         SECRET_KEY,
-        { expiresIn: "1h" }
+        { expiresIn: "24h" }
       );
 
       res.status(200).json({

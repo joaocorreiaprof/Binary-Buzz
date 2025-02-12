@@ -1,71 +1,146 @@
-.groups {
-  width: 15%;
-  padding: 1rem;
-}
-
-.create-group {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.create-group form {
+.groups-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  padding: 10px;
+  width: 15%;
+  overflow-y: auto;
+  background-color: #cdcdcd;
+  color: #e0e0e0;
 }
 
-.create-group input {
-  padding: 0.5rem;
-  margin-bottom: 0.5rem;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
+.groups-title {
+  color: black;
+  font-size: 1.4rem;
+  font-weight: bold;
+  letter-spacing: 2px;
 }
 
-.create-group button {
-  padding: 0.2rem 0.5rem;
-  background-color: #4caf50;
+.groups-create-section {
+  width: 90%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.groups-create-btn {
+  background-color: #2a2a2a;
   color: white;
+  font-size: 1.4rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
   border: none;
   cursor: pointer;
-  width: 20%;
-  max-width: 20%;
-  box-sizing: border-box;
 }
 
-.create-group button:hover {
+.groups-create-btn:hover {
+  background-color: #444;
+}
+
+.groups-form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+}
+
+.groups-input {
+  width: 100%;
+  padding: 5px 10px;
+  margin: 10px 0;
+  background-color: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 15px;
+  font-size: 14px;
+  color: #e0e0e0;
+  height: 40px;
+}
+
+.groups-input::placeholder {
+  color: #888;
+}
+
+.groups-submit-btn,
+.groups-cancel-btn {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.groups-submit-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.groups-submit-btn:hover {
   background-color: #45a049;
 }
 
-.group-list {
-  margin-top: 1rem;
+.groups-cancel-btn {
+  background-color: #f44336;
+  color: white;
 }
 
-.group-list h2 {
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
+.groups-cancel-btn:hover {
+  background-color: #d32f2f;
 }
 
-.group-list ul {
+.groups-list {
+  width: 100%;
+}
+
+.groups-ul {
   list-style: none;
   padding: 0;
-  margin: 0;
 }
 
-.group-list li {
-  padding: 0.5rem;
-  cursor: pointer;
-  background-color: #f4f4f4;
-  margin-bottom: 0.5rem;
+.groups-item {
+  padding: 10px;
+  margin: 5px;
+  width: 85%;
+  max-width: 300px;
+  text-align: center;
   border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  color: black;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: flex-start;
+  cursor: pointer;
+  background-color: white;
+  letter-spacing: 1px;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
-.group-list li:hover {
+.groups-item:hover {
   background-color: #ddd;
 }
 
-.group-list p {
-  color: #888;
+.groups-no-groups {
+  color: #aaa;
+  font-size: 14px;
+}
+
+.groups-container::-webkit-scrollbar {
+  width: 10px;
+}
+
+.groups-container::-webkit-scrollbar-track {
+  background: #2a2a2a;
+}
+
+.groups-container::-webkit-scrollbar-thumb {
+  background-color: #444;
+  border-radius: 4px;
+}
+
+.groups-container::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
 }

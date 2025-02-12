@@ -2,10 +2,11 @@
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { IoSend } from "react-icons/io5";
 
 // Styles
 import "../styles/GroupsDisplay.css";
+import { IoLogoWechat } from "react-icons/io5";
+import { IoSend } from "react-icons/io5";
 
 const GroupsDisplay = () => {
   const location = useLocation();
@@ -44,6 +45,12 @@ const GroupsDisplay = () => {
 
     fetchMessages();
   }, [selectedGroup]);
+
+  if (!selectedGroup) {
+    return (
+      <div className="select-conversation">Select a group to start chat</div>
+    );
+  }
 
   const handleMessageChange = (event) => {
     setNewMessage(event.target.value);
@@ -91,7 +98,7 @@ const GroupsDisplay = () => {
   };
 
   if (loading) {
-    return <div>Loading messages...</div>;
+    return <div className="select-conversation">Loading messages...</div>;
   }
 
   if (error) {
@@ -100,7 +107,10 @@ const GroupsDisplay = () => {
 
   return (
     <div className="groups-display-container">
-      <h2>{groupName || "Group Chat"}</h2>
+      <div className="group-chat-title-img">
+        <IoLogoWechat className="group-img" />
+        <p className="global-title">{groupName || "Group Chat"}</p>
+      </div>
 
       <div className="messages-box">
         {messages.map((message) => (
@@ -116,7 +126,6 @@ const GroupsDisplay = () => {
           >
             <strong>{message.sender.username}:</strong>
             <p>{message.content}</p>
-            <span>{new Date(message.createdAt).toLocaleTimeString()}</span>
           </div>
         ))}
       </div>
@@ -125,7 +134,7 @@ const GroupsDisplay = () => {
         <textarea
           value={newMessage}
           onChange={handleMessageChange}
-          onKeyDown={handleKeyDown} // Changed from onKeyPress
+          onKeyDown={handleKeyDown}
           placeholder="Type a message..."
         ></textarea>
         <button className="send-message-btn" onClick={handleSendMessage}>

@@ -29,6 +29,11 @@
   height: 40px;
 }
 
+.groups-create-section {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 .search-bar::placeholder {
   color: #888;
 }

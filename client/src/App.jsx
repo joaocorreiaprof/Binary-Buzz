@@ -14,8 +14,6 @@ import GlobalChatDisplay from "./components/GlobalChatDisplay";
 import ChatsDisplay from "./components/ChatsDisplay";
 import Groups from "./components/Groups";
 import GroupsDisplay from "./components/GroupsDisplay";
-import ManageProfile from "./components/ManageProfile";
-import ManageProfileDisplay from "./components/ManageProfileDisplay";
 import SignUp from "./components/SignUp";
 import LogIn from "./components/LogIn";
 
@@ -88,19 +86,6 @@ function App() {
                   <>
                     <Groups user={user} />
                     <GroupsDisplay user={user} />
-                  </>
-                ) : (
-                  <Navigate to="/log-in" />
-                )
-              }
-            />
-            <Route
-              path="/profile"
-              element={
-                user ? (
-                  <>
-                    <ManageProfile user={user} />
-                    <ManageProfileDisplay user={user} />
                   </>
                 ) : (
                   <Navigate to="/log-in" />
