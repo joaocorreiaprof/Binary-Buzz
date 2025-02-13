@@ -4,7 +4,7 @@ Binary Buzz is a messaging web application that allows users to send messages to
 
 ## Live
 
-binary-buzz-production.up.railway.app
+www.binary-buzz-production.up.railway.app
 
 ## Features
 
