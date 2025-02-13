@@ -19,7 +19,7 @@ app.use("/api/groups", auth, groupRoutes);
 app.use("/api/chats", auth, chatRoutes);
 
 // Serve static files from the client/dist directory
-const clientBuildPath = path.join(__dirname, "../../client/dist"); // Adjust path for deployment
+const clientBuildPath = path.join(__dirname, "../client/dist");
 app.use(express.static(clientBuildPath));
 
 // Handle all other routes with the frontend's index.html
