@@ -110,10 +110,6 @@ npm run dev
 
 Pull requests are welcome! Please open an issue first to discuss any major changes.
 
-## Credits
-
-- Developed by João Correia.
-
 ## License
 
 This project is open-source and available under the [MIT License](LICENSE).
